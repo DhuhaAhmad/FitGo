@@ -159,16 +159,16 @@ Before you can run the FitGo application, you need to ensure that you have the f
 
 ### Future Work
 
--[ ] Diet and Nutrition
+- [ ] Diet and Nutrition
 + Integrate a diet planner with a comprehensive food database for personalized recommendations and meal logging.
 
--[ ] Food Section
+- [ ] Food Section
 + Add a section for users to share recipes and access educational content on healthy eating.
 
--[ ] Customizable Workout Plans
+- [ ] Customizable Workout Plans
 + Enable users to create their own workout plans with expert guidance and templates.
 
--[ ] Progress Tracking
+- [ ] Progress Tracking
 + Implement a dashboard for users to track their fitness progress, set goals, and stay motivated.
 
 
