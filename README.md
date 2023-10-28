@@ -142,6 +142,28 @@ Before you can run the FitGo application, you need to ensure that you have the f
 -[x] Implement Assigning User to a Workout Plan
 -[x] Implement Updating Workout Plan
 -[x] Implement Deleting Workout Plan
+### Authentication & User Management
+<details>
+<summary>View Details</summary>
+
+- [x] **Login:** Implement functionality for user authentication.
+- [x] **Assign User to Plan:** Capability to assign workout plans to specific users.
+
+</details>
+
+### Exercises & Workout Plans
+<details>
+<summary>View Details</summary>
+
+- [x] **Exercise Listing:** Implement functionality to list all available exercises.
+- [x] **View All Workout Plans:** Implement functionality to view all workout plans.
+- [x] **View User’s Workout Plan:** Implement functionality to view a specific user's workout plan.
+- [x] **Add New Exercise:** Implement functionality to add a new exercise.
+- [x] **Create New Workout Plan:** Implement functionality to create a new workout plan.
+- [x] **Update Workout Plan:** Implement functionality to update an existing workout plan.
+- [x] **Delete Workout Plan:** Implement functionality to delete an existing workout plan.
+
+</details>
 
 
 ### Future Work
