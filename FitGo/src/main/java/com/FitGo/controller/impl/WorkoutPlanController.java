@@ -2,6 +2,7 @@ package com.FitGo.controller.impl;
 
 
 import com.FitGo.controller.DTO.WorkoutPlanReqDTO;
+import com.FitGo.controller.DTO.WorkoutPlanResDTO;
 import com.FitGo.controller.interfaces.IWorkoutPlanController;
 import com.FitGo.model.Exercise;
 import com.FitGo.model.WorkoutPlan;
@@ -26,12 +27,25 @@ public class WorkoutPlanController implements IWorkoutPlanController {
 
 
     @Override
+    @GetMapping("/view-all-plans")
+    @ResponseStatus(HttpStatus.OK)
+//    public List<WorkoutPlan> getAllWorkoutPlans() {
+//        return workoutPlanService.showAllWorkoutPlans();
+//    }
+
+    public ResponseEntity<List<WorkoutPlanReqDTO>> getAllWorkoutPlans() {
+        List<WorkoutPlanReqDTO> workoutPlans = workoutPlanService.showAllWorkoutPlans();
+        return ResponseEntity.ok(workoutPlans);
+    }
+
+
+    @Override
     @PostMapping("/create-plan")
 //    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<WorkoutPlan> createWorkoutPlan(@RequestBody WorkoutPlanReqDTO workoutPlanReqDTO) {
 
         WorkoutPlan createdPlan = workoutPlanService.createWorkoutPlan(workoutPlanReqDTO);
-        return  new ResponseEntity<>(createdPlan, HttpStatus.CREATED);
+        return new ResponseEntity<>(createdPlan, HttpStatus.CREATED);
 
     }
 
@@ -41,15 +55,19 @@ public class WorkoutPlanController implements IWorkoutPlanController {
     public ResponseEntity<String> updateWorkoutPlan(@RequestBody WorkoutPlanReqDTO workoutPlanReqDTO) {
 
         String updatedPlan = workoutPlanService.updateWorkoutPlan(workoutPlanReqDTO);
-        return  new ResponseEntity<>(updatedPlan, HttpStatus.CREATED);
+        return new ResponseEntity<>(updatedPlan, HttpStatus.CREATED);
 
     }
 
     @Override
     @DeleteMapping("/delete-workout-plan")
     public ResponseEntity<String> deleteWorkoutPlan(@RequestParam String name) {
-       String deletedPlan =  workoutPlanService.deleteWorkoutPlanByName(name);
+        String deletedPlan = workoutPlanService.deleteWorkoutPlanByName(name);
 
-       return new ResponseEntity<>(deletedPlan,HttpStatus.OK);
+        return new ResponseEntity<>(deletedPlan, HttpStatus.OK);
     }
+
+
 }
+
+

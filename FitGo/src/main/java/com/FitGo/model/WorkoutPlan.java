@@ -1,5 +1,6 @@
 package com.FitGo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,20 +21,15 @@ public class WorkoutPlan {
     private String name;
     private Integer duration;
 
-//    @OneToMany(mappedBy = "workoutPlans")
-//    private List<Exercise> exercises;
+
 
     @OneToMany(mappedBy = "workoutPlan")
     private List<WorkoutPlanExercise> workoutPlanExercises;
 
     @OneToMany(mappedBy = "workoutPlan")
+    @JsonIgnore
     private List<User> users;
 
-//    @ManyToMany
-//    @JoinTable(name = "workout_plan_exercise",
-//            joinColumns = @JoinColumn(name = "workout_plan_id"),
-//            inverseJoinColumns = @JoinColumn(name = "exercise_id"))
-//    private List<Exercise> exercises;
 
     public WorkoutPlan(String name, Integer duration) {
         this.name = name;

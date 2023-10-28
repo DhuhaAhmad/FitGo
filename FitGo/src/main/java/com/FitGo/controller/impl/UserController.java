@@ -1,13 +1,14 @@
 package com.FitGo.controller.impl;
 
 import com.FitGo.controller.interfaces.IUserController;
+import com.FitGo.model.User;
 import com.FitGo.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class UserController implements IUserController {
@@ -26,6 +27,30 @@ public class UserController implements IUserController {
         }
 
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+
+
+    /**
+     * Get a list of all users
+     *
+     * @return list of all users
+     */
+    @GetMapping("/users")
+    @ResponseStatus(HttpStatus.OK)
+    public List<User> getUsers() {
+        return userService.getUsers();
+    }
+
+    /**
+     * Save a new user
+     *
+     * @param user the user to be saved
+     */
+    @PostMapping("/users")
+    @ResponseStatus(HttpStatus.CREATED)
+    public User saveUser(@RequestBody User user) {
+        return userService.saveUser(user);
     }
 
 }

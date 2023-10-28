@@ -24,6 +24,7 @@ public class WorkoutPlanExercise {
 
     @ManyToOne
     @JoinColumn(name = "workout_plan_id")
+    @JsonIgnore
     private WorkoutPlan workoutPlan;
 
     private Integer Repetitions;

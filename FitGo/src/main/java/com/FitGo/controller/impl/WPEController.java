@@ -36,12 +36,12 @@ public class WPEController implements IWPEController {
     public ResponseEntity<WorkoutPlanResDTO> getWorkoutPlanByUsername(@PathVariable String username) {
         System.out.println("Username =>"+username);
 
-        Optional<User> user = userRepository.findByUsername(username);
-        Optional<WorkoutPlan> plan = workoutPlanRepository.findById(user.get().getWorkoutPlan().getId());
+        User user = userRepository.findByUsername(username);
+        Optional<WorkoutPlan> plan = workoutPlanRepository.findById(user.getWorkoutPlan().getId());
 
 
         WorkoutPlanResDTO workoutPlanResDTO = new WorkoutPlanResDTO();
-        workoutPlanResDTO.setUsername(user.get().getUsername());
+        workoutPlanResDTO.setUsername(user.getUsername());
         workoutPlanResDTO.setPlan(plan.get().getName());
         List<Object[]> list= iwpeService.getWorkoutPlanByUsername(username);
         System.out.println(list);

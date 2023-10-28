@@ -1,11 +1,15 @@
 package com.FitGo.service.impl;
 
 import com.FitGo.controller.DTO.ExerciseDetailDTO;
+import com.FitGo.controller.DTO.ExerciseResDTO;
 import com.FitGo.controller.DTO.WorkoutPlanReqDTO;
+import com.FitGo.controller.DTO.WorkoutPlanResDTO;
 import com.FitGo.model.Exercise;
+import com.FitGo.model.User;
 import com.FitGo.model.WorkoutPlan;
 import com.FitGo.model.WorkoutPlanExercise;
 import com.FitGo.repository.ExerciseRepository;
+import com.FitGo.repository.UserRepository;
 import com.FitGo.repository.WPERepository;
 import com.FitGo.repository.WorkoutPlanRepository;
 import com.FitGo.service.interfaces.IWorkPlanService;
@@ -14,8 +18,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class WorkoutPlanService implements IWorkPlanService {
@@ -26,6 +30,8 @@ public class WorkoutPlanService implements IWorkPlanService {
     WorkoutPlanRepository workoutPlanRepository;
     @Autowired
     WPERepository wpeRepository;
+    @Autowired
+    UserRepository userRepository;
 
 
     @Override
@@ -120,18 +126,56 @@ public class WorkoutPlanService implements IWorkPlanService {
         if(workoutPlanOptional.isPresent()) {
             WorkoutPlan workoutPlan = workoutPlanOptional.get();
 
-            // First, remove all associations of this WorkoutPlan with exercises
+            // First, set workout_plan_id to NULL in user table for all users who have this workout plan
+            List<User> users = userRepository.findByWorkoutPlan(workoutPlan);
+            for (User user : users) {
+                user.setWorkoutPlan(null);
+                userRepository.save(user);
+            }
 
+            // Now, remove all associations of this WorkoutPlan with exercises
             List<WorkoutPlanExercise> wpeList = wpeRepository.findByWorkoutPlan(workoutPlan);
             if (!wpeList.isEmpty()) {
                 wpeRepository.deleteAll(wpeList);
             }
 
             workoutPlanRepository.delete(workoutPlan);
-            return "WorkoutPlan "+name+" deleted successfully!";
+            return "Workout Plan " + name + " deleted successfully!";
         }
 
-
-        return "Workout Plan "+name+" not found";
+        return "Workout Plan " + name + " not found";
     }
+
+    @Override
+//    public List<WorkoutPlan> showAllWorkoutPlans() {
+//       return workoutPlanRepository.findAll();
+//    }
+
+
+    public List<WorkoutPlanReqDTO> showAllWorkoutPlans() {
+        List<Object[]> resultList = workoutPlanRepository.findAllWithExercises();
+
+        Map<Integer, WorkoutPlanReqDTO> workoutPlanMap = new HashMap<>();
+        for (Object[] row : resultList) {
+            String exerciseName = (String) row[0];
+            Integer repetitions = (Integer) row[1];
+            Integer sets = (Integer) row[2];
+            Integer workoutPlanId = (Integer) row[3];
+            String workoutPlanName = (String) row[4];
+            Integer workoutPlanDuration = (Integer) row[5];
+
+            WorkoutPlanReqDTO workoutPlan = workoutPlanMap.computeIfAbsent(workoutPlanId, id -> {
+                WorkoutPlanReqDTO dto = new WorkoutPlanReqDTO();
+                dto.setName(workoutPlanName);
+                dto.setDuration(workoutPlanDuration);
+                return dto;
+            });
+
+            ExerciseDetailDTO exerciseDetailsDTO = new ExerciseDetailDTO(exerciseName, repetitions, sets);
+            workoutPlan.addExerciseDetail(exerciseDetailsDTO);
+        }
+
+        return new ArrayList<>(workoutPlanMap.values());
+    }
+
 }

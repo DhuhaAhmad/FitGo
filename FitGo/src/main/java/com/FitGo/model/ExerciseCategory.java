@@ -5,5 +5,6 @@ public enum ExerciseCategory {
     Strength,
     Flexibility,
     BodyBuilding,
-    Cardio
+    Cardio,
+    Bodyweight
 }
