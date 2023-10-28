@@ -93,17 +93,34 @@ Before you can run the FitGo application, you need to ensure that you have the f
 
 ### End Points
 
-Number        | Action  | URL                  |   HTTP Verb 
-------------- |---------|----------------------|-------------|         
-1             | Index   | /login               |GET
-2             | Show    | /exercises           |GET
-3             | Show    | /view-all-plans      |GET
-4             | Show    | /:username/view-plan |GET
-5             | Create  | /add-exercise    |POST
-6             | Create  | /create-plan             |POST
-7             | Update  | /assign-user-to-plan     |PUT
-8             | Update  | /update-workout-plan     |PUT
-9             | Destroy | /delete-workout-plan      |DELETE
+#### Authentication
+| Number | Action | URL     | HTTP Verb | Description                      |
+|--------|--------|---------|-----------|----------------------------------|
+| 1      | Authenticate  | /login  | GET       | Authenticates a user and provides a session token. |
+
+#### Exercises
+| Number | Action | URL           | HTTP Verb | Description                      |
+|--------|--------|---------------|-----------|----------------------------------|
+| 2      | Show   | /exercises    | GET       | Retrieves a list of all available exercises. |
+
+#### Workout Plans
+| Number | Action | URL              | HTTP Verb | Description                      |
+|--------|--------|------------------|-----------|----------------------------------|
+| 3      | Show   | /view-all-plans  | GET       | Displays all available workout plans. |
+| 4      | Show   | /:username/view-plan | GET   | Shows the workout plan assigned to a specific user. |
+
+#### User Management
+| Number | Action | URL                    | HTTP Verb | Description                      |
+|--------|--------|------------------------|-----------|----------------------------------|
+| 7      | Update | /assign-user-to-plan   | PUT       | Assigns a workout plan to a specific user. |
+
+#### Update and Deletion
+| Number | Action  | URL                     | HTTP Verb | Description                      |
+|--------|---------|-------------------------|-----------|----------------------------------|
+| 5      | Create  | /add-exercise           | POST      | Adds a new exercise to the database. |
+| 6      | Create  | /create-plan            | POST      | Creates a new workout plan. |
+| 8      | Update  | /update-workout-plan    | PUT       | Updates an existing workout plan. |
+| 9      | Destroy | /delete-workout-plan    | DELETE    | Deletes an existing workout plan. |
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
