@@ -18,7 +18,11 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#usage">Usage</a>
+ <ul>
+        <li><a href="#end-points">End Points</a></li>
+      </ul>
+</li>
     <li><a href="#roadmap">Roadmap</a>
 <ul>
 <li><a href="#future-work">Future Work</a></li>
@@ -123,6 +127,7 @@ Before you can run the FitGo application, you need to ensure that you have the f
 | 9      | Destroy | /delete-workout-plan    | DELETE    | Deletes an existing workout plan. |
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- ROADMAP -->
 ## Roadmap
