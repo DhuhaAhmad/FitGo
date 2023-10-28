@@ -133,15 +133,6 @@ Before you can run the FitGo application, you need to ensure that you have the f
 <!-- ROADMAP -->
 ## Roadmap
 
--[x] Implement Login Functionality
--[x] Implement Exercise Listing
--[x] Implement Viewing All Workout Plans
--[x] Implement Viewing Specific User's Workout Plan
--[x] Implement Adding New Exercise
--[x] Implement Creating New Workout Plan
--[x] Implement Assigning User to a Workout Plan
--[x] Implement Updating Workout Plan
--[x] Implement Deleting Workout Plan
 ### Authentication & User Management
 <details>
 <summary>View Details</summary>
