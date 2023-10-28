@@ -1,6 +1,7 @@
 # FitGo
 
 <a name="readme-top"></a>
+
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -133,13 +134,21 @@ Before you can run the FitGo application, you need to ensure that you have the f
 ## Roadmap
 
 -[x] Implement Login Functionality
+
 -[x] Implement Exercise Listing
+
 -[x] Implement Viewing All Workout Plans
+
 -[x] Implement Viewing Specific User's Workout Plan
+
 -[x] Implement Adding New Exercise
+
 -[x] Implement Creating New Workout Plan 
+
 -[x] Implement Assigning User to a Workout Plan 
+
 -[x] Implement Updating Workout Plan
+
 -[x] Implement Deleting Workout Plan
 
 
@@ -169,7 +178,6 @@ Before you can run the FitGo application, you need to ensure that you have the f
 [spring]: https://img.shields.io/badge/spring-1e1e1e?style=for-the-badge&logo=spring
 [spring-security]: https://img.shields.io/badge/spring_security-e1e1e1?style=for-the-badge&logo=spring-security
 [jwt]: https://img.shields.io/badge/jwt-010101?style=for-the-badge&logo=jwt&logoColor=white
-
 [click here]: https://www.canva.com/design/DAFyiGmBFKI/dDCtq4wx2tcXUKKSBJQsaA/edit?utm_content=DAFyiGmBFKI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 
