@@ -175,7 +175,7 @@ Before you can run the FitGo application, you need to ensure that you have the f
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Extra links
-#### presentation: [click here]
+#### presentation: <a href="https://www.canva.com/design/DAFyiGmBFKI/dDCtq4wx2tcXUKKSBJQsaA/edit?utm_content=DAFyiGmBFKI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">click here</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -183,6 +183,5 @@ Before you can run the FitGo application, you need to ensure that you have the f
 [spring]: https://img.shields.io/badge/spring-1e1e1e?style=for-the-badge&logo=spring
 [spring-security]: https://img.shields.io/badge/spring_security-e1e1e1?style=for-the-badge&logo=spring-security
 [jwt]: https://img.shields.io/badge/jwt-010101?style=for-the-badge&logo=jwt&logoColor=white
-[click here]: https://www.canva.com/design/DAFyiGmBFKI/dDCtq4wx2tcXUKKSBJQsaA/edit?utm_content=DAFyiGmBFKI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 
