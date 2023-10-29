@@ -27,8 +27,6 @@ public interface WPERepository extends JpaRepository<WorkoutPlanExercise,Integer
 
     public List<Object[]> findWorkoutPlanByUsername(@Param("username") String username);
 
-//    Optional<WorkoutPlanExercise> findByWorkoutPlanAndExercise(WorkoutPlan workoutPlan, Exercise exercise);
-
     List<WorkoutPlanExercise> findByWorkoutPlan(WorkoutPlan workoutPlan);
 
 

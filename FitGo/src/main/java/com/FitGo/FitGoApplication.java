@@ -25,21 +25,21 @@ public class FitGoApplication {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
 
-	@Bean
-	CommandLineRunner run(UserService userService) {
-		return args -> {
-			userService.saveRole(new Role(null, "TRAINER"));
-			userService.saveRole(new Role(null, "TRAINEE"));
-
-			userService.saveUser(new User("John Doe", "john","user@gmail.com" ,"1234", new ArrayList<>()));
-			userService.saveUser(new User("James Smith", "james","user@gmail.com" ,"1234", new ArrayList<>()));
-			userService.saveUser(new User("Jane Carry", "jane","user@gmail.com" ,"1234", new ArrayList<>()));
-			userService.saveUser(new User("Chris Anderson", "chris","user@gmail.com" ,"1234", new ArrayList<>()));
-
-			userService.addRoleToUser("john", "TRAINER");
-			userService.addRoleToUser("james", "TRAINER");
-			userService.addRoleToUser("jane", "TRAINEE");
-			userService.addRoleToUser("chris", "TRAINEE");
-		};
-	}
+//	@Bean
+//	CommandLineRunner run(UserService userService) {
+//		return args -> {
+//			userService.saveRole(new Role(null, "TRAINER"));
+//			userService.saveRole(new Role(null, "TRAINEE"));
+//
+//			userService.saveUser(new User("John Doe", "john","user@gmail.com" ,"1234", new ArrayList<>()));
+//			userService.saveUser(new User("James Smith", "james","user@gmail.com" ,"1234", new ArrayList<>()));
+//			userService.saveUser(new User("Jane Carry", "jane","user@gmail.com" ,"1234", new ArrayList<>()));
+//			userService.saveUser(new User("Chris Anderson", "chris","user@gmail.com" ,"1234", new ArrayList<>()));
+//
+//			userService.addRoleToUser("john", "TRAINER");
+//			userService.addRoleToUser("james", "TRAINER");
+//			userService.addRoleToUser("jane", "TRAINEE");
+//			userService.addRoleToUser("chris", "TRAINEE");
+//		};
+//	}
 }

@@ -56,7 +56,6 @@ public class WorkoutPlanService implements IWorkPlanService {
 
 
     public String updateWorkoutPlan(WorkoutPlanReqDTO workoutPlanReqDTO) {
-        System.out.println(workoutPlanReqDTO);
 
         // Fetch the existing workout plan
         Optional<WorkoutPlan> workoutPlanOptional = workoutPlanRepository.findByName(workoutPlanReqDTO.getName());
@@ -68,8 +67,6 @@ public class WorkoutPlanService implements IWorkPlanService {
             for (ExerciseDetailDTO detailDTO : workoutPlanReqDTO.getExercises()) {
                 System.out.println(detailDTO.getExerciseName());
                 Exercise newExercise;
-//                Exercise newExercise = exerciseRepository.findByName(detailDTO.getExerciseName())
-//                        .orElseThrow(() -> new RuntimeException("Exercise not found"));
 
                 Optional<Exercise> newExerciseOp = exerciseRepository.findByName(detailDTO.getExerciseName());
                 if (newExerciseOp.isEmpty()) return "Exercise "+ detailDTO.getExerciseName()+" not found";
@@ -147,10 +144,6 @@ public class WorkoutPlanService implements IWorkPlanService {
     }
 
     @Override
-//    public List<WorkoutPlan> showAllWorkoutPlans() {
-//       return workoutPlanRepository.findAll();
-//    }
-
 
     public List<WorkoutPlanReqDTO> showAllWorkoutPlans() {
         List<Object[]> resultList = workoutPlanRepository.findAllWithExercises();

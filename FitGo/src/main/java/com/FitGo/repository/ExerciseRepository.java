@@ -10,7 +10,6 @@ import java.util.Optional;
 @Repository
 public interface ExerciseRepository extends JpaRepository<Exercise, Integer> {
 
-//    public List<Exercise> findAll();
     public Optional<Exercise> findByName(String name);
 
 }

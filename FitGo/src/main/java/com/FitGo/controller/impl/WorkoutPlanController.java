@@ -29,10 +29,6 @@ public class WorkoutPlanController implements IWorkoutPlanController {
     @Override
     @GetMapping("/view-all-plans")
     @ResponseStatus(HttpStatus.OK)
-//    public List<WorkoutPlan> getAllWorkoutPlans() {
-//        return workoutPlanService.showAllWorkoutPlans();
-//    }
-
     public ResponseEntity<List<WorkoutPlanReqDTO>> getAllWorkoutPlans() {
         List<WorkoutPlanReqDTO> workoutPlans = workoutPlanService.showAllWorkoutPlans();
         return ResponseEntity.ok(workoutPlans);

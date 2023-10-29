@@ -13,6 +13,5 @@ public interface UserRepository extends JpaRepository<User,Integer> {
 
 public User findByUsername(String username);
 
-        //User findBy_username(String username);
     public List<User> findByWorkoutPlan(WorkoutPlan workoutPlan);
 }
