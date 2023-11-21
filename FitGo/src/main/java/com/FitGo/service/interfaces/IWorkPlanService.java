@@ -1,7 +1,7 @@
 package com.FitGo.service.interfaces;
 
+import com.FitGo.controller.DTO.AllWorkoutPlanDTO;
 import com.FitGo.controller.DTO.WorkoutPlanReqDTO;
-import com.FitGo.controller.DTO.WorkoutPlanResDTO;
 import com.FitGo.model.WorkoutPlan;
 
 import java.util.List;
@@ -13,5 +13,5 @@ public interface IWorkPlanService {
 
     public String deleteWorkoutPlanByName(String name);
 
-    public List<WorkoutPlanReqDTO> showAllWorkoutPlans();
+    public List<AllWorkoutPlanDTO> showAllWorkoutPlans();
 }

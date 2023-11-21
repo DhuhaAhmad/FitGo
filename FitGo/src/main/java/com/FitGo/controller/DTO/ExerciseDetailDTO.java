@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class ExerciseDetailDTO {
     private String exerciseName;
-    private Integer reps;
+    private Integer repetitions;
     private Integer sets;
+
+
 }

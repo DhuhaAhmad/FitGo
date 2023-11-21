@@ -1,6 +1,5 @@
 package com.FitGo.service.impl;
 
-import com.FitGo.controller.DTO.WorkoutPlanResDTO;
 import com.FitGo.repository.WPERepository;
 import com.FitGo.service.interfaces.IWPEService;
 import org.springframework.beans.factory.annotation.Autowired;

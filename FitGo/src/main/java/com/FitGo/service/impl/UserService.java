@@ -10,6 +10,8 @@ import com.FitGo.service.interfaces.IUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -49,7 +51,10 @@ public class UserService implements IUserService, UserDetailsService {
 
 
     @Override
-    public String assignUserToWorkoutPlan(String username, String planName) {
+    public String assignUserToWorkoutPlan(String planName) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        System.out.println(username);
         User user = userRepository.findByUsername(username);
         Optional<WorkoutPlan> workoutPlanOpt = workoutPlanRepository.findByName(planName);
 

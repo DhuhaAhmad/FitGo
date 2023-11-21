@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IUserController {
 
-    public ResponseEntity<String> assignWorkoutToUser(String username,String planName);
+    public ResponseEntity<String> assignWorkoutToUser(String planName);
 
     /**
      * Retrieves a list of all users

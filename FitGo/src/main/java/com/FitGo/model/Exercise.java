@@ -19,6 +19,8 @@ public class Exercise {
     private Integer id;
     private String name;
     private String description;
+    private String muscleGroup;
+    private String image;
 
     @Enumerated(EnumType.STRING)
     private ExerciseCategory category;
@@ -27,9 +29,12 @@ public class Exercise {
     @JsonIgnore
     private List<WorkoutPlanExercise> workoutPlanExercises;
 
-    public Exercise(String name, String description, ExerciseCategory category) {
+
+    public Exercise(String name, String description, String muscleGroup, String image, ExerciseCategory category) {
         this.name = name;
         this.description = description;
+        this.muscleGroup = muscleGroup;
+        this.image = image;
         this.category = category;
     }
 }

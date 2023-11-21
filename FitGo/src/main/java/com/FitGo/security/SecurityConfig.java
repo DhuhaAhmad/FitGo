@@ -69,29 +69,22 @@ public class SecurityConfig {
         customAuthenticationFilter.setFilterProcessesUrl("/login");
         // disable CSRF protection
         http.csrf().disable();
+        http.cors();
         // set the session creation policy to stateless
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         // set up authorization for different request matchers and user roles
         http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/login/**").permitAll()
-//                .requestMatchers(GET, "/api/users").hasAnyAuthority("ROLE_USER")
-//                .requestMatchers(POST, "/api/users").hasAnyAuthority("TRAINER")
-                .requestMatchers(GET, "/{username}/view-plan").hasAnyAuthority("TRAINER")
+
+//                .requestMatchers(GET, "/{username}/view-plan").hasAnyAuthority("TRAINER")
                 .requestMatchers(POST, "/add-exercise").hasAnyAuthority("TRAINER")
                 .requestMatchers(POST, "/create-plan").hasAnyAuthority("TRAINER")
-                .requestMatchers(PUT, "/assign-user-to-plan").hasAnyAuthority("TRAINER")
+//                .requestMatchers(PUT, "/assign-user-to-plan").hasAnyAuthority("TRAINER")
                 .requestMatchers(PUT, "/update-workout-plan").hasAnyAuthority("TRAINER")
                 .requestMatchers(DELETE, "/delete-workout-plan").hasAnyAuthority("TRAINER")
 
-//                .requestMatchers(GET, "/exercises").hasAnyAuthority("TRAINER")
-//                .requestMatchers(POST, "/create-plan").hasAnyAuthority("TRAINER")
-//                .requestMatchers(GET, "/view-all-plans").hasAnyAuthority("TRAINER")
-
-//                .requestMatchers(GET, "/exercises").hasAnyAuthority("TRAINEE")
-//                .requestMatchers(POST, "/create-plan").hasAnyAuthority( "TRAINEE")
-//                .requestMatchers(GET, "/view-all-plans").hasAnyAuthority("TRAINEE")
-
-                .requestMatchers(GET, "/exercises", "/view-all-plans").hasAnyAuthority("TRAINER", "TRAINEE")
+                .requestMatchers(GET, "/exercises", "/view-all-plans","/{username}/view-plan").hasAnyAuthority("TRAINER", "TRAINEE")
+                .requestMatchers(PUT, "/assign-user-to-plan").hasAnyAuthority("TRAINER", "TRAINEE")
 
                 .anyRequest().authenticated());
         // add the custom authentication filter to the http security object

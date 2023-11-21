@@ -18,6 +18,8 @@ public interface WorkoutPlanRepository extends JpaRepository<WorkoutPlan,Integer
 
     @Query(value = "SELECT \n" +
             "    e.name AS exercise_name,\n" +
+            "    e.muscle_group AS exercise_muscle_group,\n" +
+            "    e.image AS exercise_image,\n" +
             "    wpe.repetitions,\n" +
             "    wpe.sets,\n" +
             "    wp.id,\n" +

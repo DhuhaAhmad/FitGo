@@ -1,18 +1,16 @@
 package com.FitGo.controller.impl;
 
 
+import com.FitGo.controller.DTO.ExerciseDetailDTO;
 import com.FitGo.controller.DTO.ExerciseResDTO;
-import com.FitGo.controller.DTO.WorkoutPlanReqDTO;
-import com.FitGo.controller.DTO.WorkoutPlanResDTO;
+import com.FitGo.controller.DTO.UserWorkoutPlanResDTO;
 import com.FitGo.controller.interfaces.IWPEController;
 import com.FitGo.model.User;
 import com.FitGo.model.WorkoutPlan;
-import com.FitGo.model.WorkoutPlanExercise;
 import com.FitGo.repository.UserRepository;
 import com.FitGo.repository.WorkoutPlanRepository;
 import com.FitGo.service.interfaces.IWPEService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,28 +31,31 @@ public class WPEController implements IWPEController {
 
     @Override
     @GetMapping("/{username}/view-plan")
-    public ResponseEntity<WorkoutPlanResDTO> getWorkoutPlanByUsername(@PathVariable String username) {
+    public ResponseEntity<UserWorkoutPlanResDTO> getWorkoutPlanByUsername(@PathVariable String username) {
         System.out.println("Username =>"+username);
 
         User user = userRepository.findByUsername(username);
         Optional<WorkoutPlan> plan = workoutPlanRepository.findById(user.getWorkoutPlan().getId());
 
 
-        WorkoutPlanResDTO workoutPlanResDTO = new WorkoutPlanResDTO();
-        workoutPlanResDTO.setUsername(user.getUsername());
-        workoutPlanResDTO.setPlan(plan.get().getName());
+        UserWorkoutPlanResDTO userWorkoutPlanResDTO = new UserWorkoutPlanResDTO();
+        userWorkoutPlanResDTO.setUsername(user.getUsername());
+        userWorkoutPlanResDTO.setPlan(plan.get().getName());
         List<Object[]> list= iwpeService.getWorkoutPlanByUsername(username);
-        System.out.println(list);
+//        System.out.println(list);
         for (Object[] row : list) {
             String exerciseName = (String) row[0];
-            Integer repetitions = (Integer) row[1];
-            Integer sets = (Integer) row[2];
+            String muscleGroup = (String) row[1];
+            String image = (String) row[2];
+            Integer repetitions = (Integer) row[3];
+            Integer sets = (Integer) row[4];
 
 
-            ExerciseResDTO exerciseDetailsDTO = new ExerciseResDTO(exerciseName, repetitions, sets);
-            workoutPlanResDTO.addExerciseDetail(exerciseDetailsDTO);
+
+            ExerciseResDTO exerciseResDTO = new ExerciseResDTO(exerciseName, repetitions, sets,muscleGroup,image);
+            userWorkoutPlanResDTO.addExerciseDetail(exerciseResDTO);
         }
 
-        return ResponseEntity.ok(workoutPlanResDTO);
+        return ResponseEntity.ok(userWorkoutPlanResDTO);
     }
 }

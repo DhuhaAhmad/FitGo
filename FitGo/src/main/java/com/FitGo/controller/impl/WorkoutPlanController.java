@@ -1,12 +1,10 @@
 package com.FitGo.controller.impl;
 
 
+import com.FitGo.controller.DTO.AllWorkoutPlanDTO;
 import com.FitGo.controller.DTO.WorkoutPlanReqDTO;
-import com.FitGo.controller.DTO.WorkoutPlanResDTO;
 import com.FitGo.controller.interfaces.IWorkoutPlanController;
-import com.FitGo.model.Exercise;
 import com.FitGo.model.WorkoutPlan;
-import com.FitGo.repository.WPERepository;
 import com.FitGo.repository.WorkoutPlanRepository;
 import com.FitGo.service.impl.WorkoutPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +27,8 @@ public class WorkoutPlanController implements IWorkoutPlanController {
     @Override
     @GetMapping("/view-all-plans")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<WorkoutPlanReqDTO>> getAllWorkoutPlans() {
-        List<WorkoutPlanReqDTO> workoutPlans = workoutPlanService.showAllWorkoutPlans();
+    public ResponseEntity<List<AllWorkoutPlanDTO>> getAllWorkoutPlans() {
+        List<AllWorkoutPlanDTO> workoutPlans = workoutPlanService.showAllWorkoutPlans();
         return ResponseEntity.ok(workoutPlans);
     }
 

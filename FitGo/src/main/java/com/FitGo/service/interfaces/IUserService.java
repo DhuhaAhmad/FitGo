@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IUserService {
 
-    public String assignUserToWorkoutPlan(String username,String planName);
+    public String assignUserToWorkoutPlan(String planName);
 
 
     /**

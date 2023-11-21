@@ -9,7 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class WorkoutPlanResDTO {
+public class UserWorkoutPlanResDTO {
     private String username;
     private String plan;
     private List<ExerciseResDTO> exerciseDTOS =  new ArrayList<>();

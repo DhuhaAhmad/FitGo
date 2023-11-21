@@ -1,25 +1,20 @@
 package com.FitGo.service.impl;
 
+import com.FitGo.controller.DTO.AllWorkoutPlanDTO;
 import com.FitGo.controller.DTO.ExerciseDetailDTO;
 import com.FitGo.controller.DTO.ExerciseResDTO;
 import com.FitGo.controller.DTO.WorkoutPlanReqDTO;
-import com.FitGo.controller.DTO.WorkoutPlanResDTO;
-import com.FitGo.model.Exercise;
-import com.FitGo.model.User;
-import com.FitGo.model.WorkoutPlan;
-import com.FitGo.model.WorkoutPlanExercise;
+import com.FitGo.model.*;
 import com.FitGo.repository.ExerciseRepository;
 import com.FitGo.repository.UserRepository;
 import com.FitGo.repository.WPERepository;
 import com.FitGo.repository.WorkoutPlanRepository;
 import com.FitGo.service.interfaces.IWorkPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
+
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class WorkoutPlanService implements IWorkPlanService {
@@ -46,7 +41,7 @@ public class WorkoutPlanService implements IWorkPlanService {
             WorkoutPlanExercise wpe = new WorkoutPlanExercise();
             wpe.setExercise(exercise);
             wpe.setWorkoutPlan(workoutPlan);
-            wpe.setRepetitions(detailDTO.getReps());
+            wpe.setRepetitions(detailDTO.getRepetitions());
             wpe.setSets(detailDTO.getSets());
             wpeRepository.save(wpe);
         }
@@ -82,7 +77,7 @@ public class WorkoutPlanService implements IWorkPlanService {
                 for (WorkoutPlanExercise wpe : existingWPEList) {
                     if (wpe.getExercise().getId().equals(newExercise.getId())) {
                         // Update the WorkoutPlanExercise if the exercise matches
-                        wpe.setRepetitions(detailDTO.getReps());
+                        wpe.setRepetitions(detailDTO.getRepetitions());
                         wpe.setSets(detailDTO.getSets());
                         wpeRepository.save(wpe);
                         exerciseFound = true;
@@ -95,14 +90,14 @@ public class WorkoutPlanService implements IWorkPlanService {
                     // and there are some existing associations, update the first one with the new exercise.
                     WorkoutPlanExercise wpe = existingWPEList.get(0); // Get the first existing association
                     wpe.setExercise(newExercise);
-                    wpe.setRepetitions(detailDTO.getReps());
+                    wpe.setRepetitions(detailDTO.getRepetitions());
                     wpe.setSets(detailDTO.getSets());
                     wpeRepository.save(wpe);
                 } else if (!exerciseFound) {
                     // If there are no existing associations, just create a new one.
                     WorkoutPlanExercise wpe = new WorkoutPlanExercise();
                     wpe.setExercise(newExercise);
-                    wpe.setRepetitions(detailDTO.getReps());
+                    wpe.setRepetitions(detailDTO.getRepetitions());
                     wpe.setSets(detailDTO.getSets());
                     wpe.setWorkoutPlan(workoutPlan);
                     wpeRepository.save(wpe);
@@ -145,27 +140,30 @@ public class WorkoutPlanService implements IWorkPlanService {
 
     @Override
 
-    public List<WorkoutPlanReqDTO> showAllWorkoutPlans() {
+    public List<AllWorkoutPlanDTO> showAllWorkoutPlans() {
         List<Object[]> resultList = workoutPlanRepository.findAllWithExercises();
-
-        Map<Integer, WorkoutPlanReqDTO> workoutPlanMap = new HashMap<>();
+        System.out.println(resultList);
+        Map<Integer, AllWorkoutPlanDTO> workoutPlanMap = new HashMap<>();
         for (Object[] row : resultList) {
             String exerciseName = (String) row[0];
-            Integer repetitions = (Integer) row[1];
-            Integer sets = (Integer) row[2];
-            Integer workoutPlanId = (Integer) row[3];
-            String workoutPlanName = (String) row[4];
-            Integer workoutPlanDuration = (Integer) row[5];
+            String muscleGroup = (String) row[1];
+            String image = (String) row[2];
+            Integer repetitions = (Integer) row[3];
+            Integer sets = (Integer) row[4];
+            Integer workoutPlanId = (Integer) row[5];
+            String workoutPlanName = (String) row[6];
+            Integer workoutPlanDuration = (Integer) row[7];
 
-            WorkoutPlanReqDTO workoutPlan = workoutPlanMap.computeIfAbsent(workoutPlanId, id -> {
-                WorkoutPlanReqDTO dto = new WorkoutPlanReqDTO();
+            AllWorkoutPlanDTO allWorkoutPlanDTO = workoutPlanMap.computeIfAbsent(workoutPlanId, id -> {
+                AllWorkoutPlanDTO dto = new AllWorkoutPlanDTO();
                 dto.setName(workoutPlanName);
                 dto.setDuration(workoutPlanDuration);
                 return dto;
             });
 
-            ExerciseDetailDTO exerciseDetailsDTO = new ExerciseDetailDTO(exerciseName, repetitions, sets);
-            workoutPlan.addExerciseDetail(exerciseDetailsDTO);
+            ExerciseResDTO exerciseDetailsDTO = new ExerciseResDTO(exerciseName, repetitions, sets,muscleGroup,image);
+
+                allWorkoutPlanDTO.addExerciseDetail(exerciseDetailsDTO);
         }
 
         return new ArrayList<>(workoutPlanMap.values());

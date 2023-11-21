@@ -18,9 +18,9 @@ public class UserController implements IUserController {
 
     @Override
     @PutMapping("/assign-user-to-plan")
-    public ResponseEntity<String> assignWorkoutToUser(@RequestParam String username,
+    public ResponseEntity<String> assignWorkoutToUser(
                                                       @RequestParam String planName) {
-        String result = userService.assignUserToWorkoutPlan(username, planName);
+        String result = userService.assignUserToWorkoutPlan( planName);
 
         if (result.contains("not found")) {
             return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
