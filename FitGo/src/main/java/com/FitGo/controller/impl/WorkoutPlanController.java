@@ -49,7 +49,7 @@ public class WorkoutPlanController implements IWorkoutPlanController {
     public ResponseEntity<String> updateWorkoutPlan(@RequestBody WorkoutPlanReqDTO workoutPlanReqDTO) {
 
         String updatedPlan = workoutPlanService.updateWorkoutPlan(workoutPlanReqDTO);
-        return new ResponseEntity<>(updatedPlan, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
 
     }
 
@@ -58,7 +58,7 @@ public class WorkoutPlanController implements IWorkoutPlanController {
     public ResponseEntity<String> deleteWorkoutPlan(@RequestParam String name) {
         String deletedPlan = workoutPlanService.deleteWorkoutPlanByName(name);
 
-        return new ResponseEntity<>(deletedPlan, HttpStatus.OK);
+        return new ResponseEntity<>( HttpStatus.OK);
     }
 
 

@@ -26,7 +26,7 @@ public class UserController implements IUserController {
             return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
